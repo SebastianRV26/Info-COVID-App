@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single" >
+
+        <item
+            android:id="@+id/casesByCountry"
+            android:title="Casos por país"
+            android:icon="@drawable/ic_action_cases_by_country"/>
+
+        <item
+            android:id="@+id/about"
+            android:title="Acerca de"
+            android:icon="@drawable/ic_action_about"/>
+    </group>
+
+</menu>

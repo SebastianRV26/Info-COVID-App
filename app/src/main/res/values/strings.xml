@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Informative Application Covid 19</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
