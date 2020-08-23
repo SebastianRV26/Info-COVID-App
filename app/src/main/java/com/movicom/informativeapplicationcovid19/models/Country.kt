@@ -6,10 +6,7 @@ import java.util.*
  * País.
  */
 data class Country (
-    private var Country:String, // nombre del país
-    private var Confirmed: Int, // casos confirmados
-    private var Deaths: Int,    // muertes
-    private var Recovered: Int, // recuperados
-    private var Active: Int,    // activos
-    private var Date:Date       // fecha
+    var Country:String, // Costa Rica
+    var Slug:String,    // costa-rica
+    var ISO2:String     // CR
 )

@@ -1,6 +1,7 @@
 package com.movicom.informativeapplicationcovid19.network
 
 import com.movicom.informativeapplicationcovid19.environments.apiCovidBaseUrl
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -17,7 +18,7 @@ class Api {
 
     init {
         retrofit = Retrofit.Builder()
-            .baseUrl(apiCovidBaseUrl)
+            .baseUrl("https://api.covid19api.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

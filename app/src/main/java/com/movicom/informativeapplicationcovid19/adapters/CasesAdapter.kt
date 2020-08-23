@@ -7,19 +7,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.movicom.informativeapplicationcovid19.R
+import com.movicom.informativeapplicationcovid19.models.Cases
 import com.movicom.informativeapplicationcovid19.models.Country
 
-class CountryAdapter() : RecyclerView.Adapter<CountryAdapter.ViewHolder>(){
-    private var countries: MutableList<Country>  = ArrayList()
+class CasesAdapter() : RecyclerView.Adapter<CasesAdapter.ViewHolder>(){
+    private var cases: MutableList<Cases>  = ArrayList()
     private lateinit var context: Context
 
-    fun RecyclerAdapter(countries : MutableList<Country>, context: Context){
-        this.countries = countries
+    fun RecyclerAdapter(countries : MutableList<Cases>, context: Context){
+        this.cases = countries
         this.context = context
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = countries[position]
+        val item = cases[position]
         holder.bind(item, context)
     }
 
@@ -29,16 +30,16 @@ class CountryAdapter() : RecyclerView.Adapter<CountryAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return countries.size
+        return cases.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val countryName = view.findViewById(R.id.CountryName) as TextView
         private val countryCases = view.findViewById(R.id.CountryCases) as TextView
 
-        fun bind(country: Country, context: Context) {
-            countryName.text = country.Country
-            countryCases.text = country.ISO2
+        fun bind(cases: Cases, context: Context) {
+            // countryName.text = cases.Country
+            // countryCases.text = cases.ISO2
         }
     }
 }

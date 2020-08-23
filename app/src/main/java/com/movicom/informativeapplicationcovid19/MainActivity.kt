@@ -3,6 +3,7 @@ package com.movicom.informativeapplicationcovid19
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
@@ -14,8 +15,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var aboutFragment: AboutFragment
-    lateinit var countriesFragment: CountriesFragment
+    private lateinit var aboutFragment: AboutFragment
+    private lateinit var countriesFragment: CountriesFragment
+    private lateinit var actionBar:ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -24,8 +26,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        val actionBar = supportActionBar
-        actionBar!!.title = "Navigation Drawer"
+        actionBar = supportActionBar!!
+        actionBar.title = "Casos por país"
 
         val drawerToggle : ActionBarDrawerToggle = object: ActionBarDrawerToggle(
             this, drawerLayout, toolbar,(R.string.open), (R.string.close)){
@@ -48,15 +50,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId){
-            /*R.id.casesByCountry -> {
+            R.id.casesByCountry -> {
+                actionBar.title = "Casos por país"
                 countriesFragment = CountriesFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, countriesFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
-            }*/
+            }
             R.id.about -> {
+                actionBar.title = "Acerca de"
                 aboutFragment = AboutFragment()
                 supportFragmentManager
                     .beginTransaction()
