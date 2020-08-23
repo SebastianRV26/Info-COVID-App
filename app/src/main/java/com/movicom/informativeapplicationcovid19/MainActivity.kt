@@ -37,7 +37,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        countriesFragment = CountriesFragment()
+        countriesFragment =
+            CountriesFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame_layout, countriesFragment)
@@ -47,14 +48,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId){
-            R.id.casesByCountry -> {
+            /*R.id.casesByCountry -> {
                 countriesFragment = CountriesFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, countriesFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
-            }
+            }*/
             R.id.about -> {
                 aboutFragment = AboutFragment()
                 supportFragmentManager

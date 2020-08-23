@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:elevation="7dp"
-    android:orientation="vertical"
-    app:cardCornerRadius="8dp"
     tools:context=".views.CountriesFragment">
 
     <TextView
-        android:id="@+id/CountryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="País"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/CountryCases"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Casos"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCountrys"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
