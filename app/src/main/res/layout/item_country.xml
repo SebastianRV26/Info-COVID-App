@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:elevation="7dp"
+    app:cardCornerRadius="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CountryName"
+        android:text="Country"
+        android:textSize="26sp"
+        android:textStyle="normal"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CountryCases"
+        android:text="Cases"
+        android:textSize="26sp"
+        android:textStyle="normal"
+        android:layout_gravity="end"
+        />
+
+</androidx.cardview.widget.CardView>
