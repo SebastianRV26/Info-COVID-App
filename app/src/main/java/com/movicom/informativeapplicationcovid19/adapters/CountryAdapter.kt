@@ -9,34 +9,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.movicom.informativeapplicationcovid19.R
 import com.movicom.informativeapplicationcovid19.models.Country
 
-class CountryAdapter() : RecyclerView.Adapter<CountryAdapter.ViewHolder>(){
-    private var countries: MutableList<Country>  = ArrayList()
+class CountryAdapter : RecyclerView.Adapter<CountryAdapter.ViewHolder>(){
+    private var countries: ArrayList<Country>  = ArrayList()
     private lateinit var context: Context
 
-    fun RecyclerAdapter(countries : MutableList<Country>, context: Context){
+    fun recyclerAdapter(countries : ArrayList<Country>, context: Context){
         this.countries = countries
         this.context = context
+        notifyDataSetChanged() //
+        println("\n recyclerAdapter")
+        println(countries.size)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = countries[position]
-        holder.bind(item, context)
+        holder.bind(item)
+        println("\n onBindViewHolder")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+        println("\n onCreateViewHolder")
         return ViewHolder(layoutInflater.inflate(R.layout.item_country, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return countries.size
+        println("\n getItemCount"+this.countries.size)
+        /*if (this.countries.size == 0) {
+            return 1
+        }*/
+        return this.countries.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val countryName = view.findViewById(R.id.CountryName) as TextView
         private val countryCases = view.findViewById(R.id.CountryCases) as TextView
 
-        fun bind(country: Country, context: Context) {
+        fun bind(country: Country) {
+            println("\n\n"+country.Country)
             countryName.text = country.Country
             countryCases.text = country.ISO2
         }

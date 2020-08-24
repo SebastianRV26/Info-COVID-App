@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.movicom.informativeapplicationcovid19.R
 import com.movicom.informativeapplicationcovid19.models.Cases
-import com.movicom.informativeapplicationcovid19.models.Country
 
 class CasesAdapter() : RecyclerView.Adapter<CasesAdapter.ViewHolder>(){
     private var cases: MutableList<Cases>  = ArrayList()

@@ -7,12 +7,12 @@
 
         <item
             android:id="@+id/casesByCountry"
-            android:title="Casos por país"
+            android:title="@string/cases_per_country"
             android:icon="@drawable/ic_action_cases_by_country"/>
 
         <item
             android:id="@+id/about"
-            android:title="Acerca de"
+            android:title="@string/about_page"
             android:icon="@drawable/ic_action_about"/>
     </group>
 

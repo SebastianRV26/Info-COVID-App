@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var actionBar:ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
+        setTheme(R.style.AppTheme) // SplashScreen
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
         actionBar = supportActionBar!!
-        actionBar.title = "Casos por país"
+        actionBar.title = getString(R.string.cases_per_country)
 
         val drawerToggle : ActionBarDrawerToggle = object: ActionBarDrawerToggle(
             this, drawerLayout, toolbar,(R.string.open), (R.string.close)){
@@ -39,8 +39,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        countriesFragment =
-            CountriesFragment()
+        aboutFragment = AboutFragment()
+        countriesFragment = CountriesFragment()
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame_layout, countriesFragment)
@@ -48,11 +49,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
+    /**
+     * Para cambiar de fragmento.
+     *
+     * @param menuItem menu del Navigation Drawer
+     */
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId){
             R.id.casesByCountry -> {
-                actionBar.title = "Casos por país"
-                countriesFragment = CountriesFragment()
+                actionBar.title = getString(R.string.cases_per_country)
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, countriesFragment)
@@ -60,8 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
             R.id.about -> {
-                actionBar.title = "Acerca de"
-                aboutFragment = AboutFragment()
+                actionBar.title = getString(R.string.about_page)
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, aboutFragment)
