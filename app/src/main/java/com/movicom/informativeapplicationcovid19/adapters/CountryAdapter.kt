@@ -16,28 +16,20 @@ class CountryAdapter : RecyclerView.Adapter<CountryAdapter.ViewHolder>(){
     fun recyclerAdapter(countries : ArrayList<Country>, context: Context){
         this.countries = countries
         this.context = context
-        notifyDataSetChanged() //
-        println("\n recyclerAdapter")
-        println(countries.size)
+        //notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = countries[position]
         holder.bind(item)
-        println("\n onBindViewHolder")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        println("\n onCreateViewHolder")
         return ViewHolder(layoutInflater.inflate(R.layout.item_country, parent, false))
     }
 
     override fun getItemCount(): Int {
-        println("\n getItemCount"+this.countries.size)
-        /*if (this.countries.size == 0) {
-            return 1
-        }*/
         return this.countries.size
     }
 
@@ -46,7 +38,6 @@ class CountryAdapter : RecyclerView.Adapter<CountryAdapter.ViewHolder>(){
         private val countryCases = view.findViewById(R.id.CountryCases) as TextView
 
         fun bind(country: Country) {
-            println("\n\n"+country.Country)
             countryName.text = country.Country
             countryCases.text = country.ISO2
         }

@@ -32,7 +32,6 @@ class CountriesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_countries, container, false)
-        countries = getCountries()
         setUpRecyclerView(view)
         return view
     }
@@ -40,7 +39,7 @@ class CountriesFragment : Fragment() {
     private fun setUpRecyclerView(view:View){
         mRecyclerView = view.findViewById(R.id.rvCountrys)
         //mRecyclerView.setHasFixedSize(true)
-        println(countries.size)
+        countries = getCountries()
         mAdapter.recyclerAdapter(countries, context!!)
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -56,14 +55,10 @@ class CountriesFragment : Fragment() {
                 override fun onResponse(
                     call: Call<List<Country>>, response: Response<List<Country>>?) {
                     if (response?.isSuccessful!!) { // si success es true
-                        //println("\n${response.body()}")
-                        //listCountries = response.body()!!
                         val body = response.body()
                         body?.forEach {
                             listCountries .add(it)
-                            println(it.Country)
                         }
-                        println("\n"+listCountries)
                         mAdapter.notifyDataSetChanged()
                     } else {
                         showMessage("Ha habido un error ${response.code()}, inténtelo más tarde")
@@ -75,7 +70,6 @@ class CountriesFragment : Fragment() {
                     t?.printStackTrace()
                 }
             })
-        println(listCountries.size)
         return listCountries
     }
 
