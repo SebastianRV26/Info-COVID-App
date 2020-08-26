@@ -7,6 +7,13 @@
     <!-- Menu -->
     <string name="cases_per_country">Casos por país</string>
     <string name="about_page">Acerca de</string>
+
+    <!-- About Page -->
     <string name="developer_name">Sebastián Rojas Vargas</string>
     <string name="contact">Contacto</string>
+
+    <!-- Country Activity -->
+    <string name="select_your_country">
+        Favor buscar y seleccionar su país en la siguiente lista</string>
+    <string name="next">Siguiente</string>
 </resources>

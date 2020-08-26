@@ -1,4 +1,4 @@
-package com.movicom.informativeapplicationcovid19
+package com.movicom.informativeapplicationcovid19.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,20 +8,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
-import com.movicom.informativeapplicationcovid19.views.AboutFragment
-import com.movicom.informativeapplicationcovid19.views.CountriesFragment
+import com.movicom.informativeapplicationcovid19.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var aboutFragment: AboutFragment
-    private lateinit var countriesFragment: CountriesFragment
+    private lateinit var casesFragment: CasesFragment
     private lateinit var actionBar:ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme) // SplashScreen
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -40,11 +37,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         aboutFragment = AboutFragment()
-        countriesFragment = CountriesFragment()
+        casesFragment = CasesFragment()
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout, countriesFragment)
+            .replace(R.id.frame_layout, casesFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
     }
@@ -60,7 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 actionBar.title = getString(R.string.cases_per_country)
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_layout, countriesFragment)
+                    .replace(R.id.frame_layout, casesFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }

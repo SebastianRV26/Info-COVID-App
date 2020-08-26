@@ -18,9 +18,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * A simple [Fragment] subclass.
+ * Controlador de vista: Paises.
  */
-class CountriesFragment : Fragment() {
+class CasesFragment : Fragment() {
 
     private lateinit var mRecyclerView: RecyclerView
     private var mAdapter: CountryAdapter = CountryAdapter()
@@ -31,16 +31,16 @@ class CountriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_countries, container, false)
+        val view = inflater.inflate(R.layout.fragment_cases, container, false)
         setUpRecyclerView(view)
         return view
     }
 
     private fun setUpRecyclerView(view:View){
-        mRecyclerView = view.findViewById(R.id.rvCountrys)
+        mRecyclerView = view.findViewById(R.id.rvCountrysxd)
         //mRecyclerView.setHasFixedSize(true)
         countries = getCountries()
-        mAdapter.recyclerAdapter(countries, context!!)
+        //mAdapter.recyclerAdapter(countries)
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
     }

@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.movicom.informativeapplicationcovid19.R
 
 /**
- * A simple [Fragment] subclass.
+ * Controlador de vista: Acerca de.
  */
 class AboutFragment : Fragment(), View.OnClickListener {
 
