@@ -7,37 +7,77 @@
     android:orientation="vertical"
     tools:context=".views.CasesFragment">
 
-    <LinearLayout
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_marginTop="50dp"
-        android:orientation="horizontal">
+        android:indeterminate="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateTint="@color/colorAccent"
+        android:scaleY="4" />
 
-        <TextView
-            android:id="@+id/CountryName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="País"
-            android:textSize="26sp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/country"
+        android:textColor="@color/colorBlack"
+        android:textSize="26sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/CountryCases"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="Casos"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+    <TextView
+    android:id="@+id/tvDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="@color/colorBlack"
+    android:text="@string/date"/>
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvConfirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/confirmed"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCountrysxd"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/tvDeaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="@string/deaths"/>
 
+    <TextView
+        android:id="@+id/tvRecovered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/recovered"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/tvActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="@string/active"/>
+
+    <Button
+        android:id="@+id/btnChangeCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/change_country" />
 </LinearLayout>

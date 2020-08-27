@@ -11,5 +11,5 @@ data class Cases (
     var Deaths: Int,    // muertes
     var Recovered: Int, // recuperados
     var Active: Int,    // activos
-    var Date: Date      // fecha
+    var Date: String      // fecha
 )

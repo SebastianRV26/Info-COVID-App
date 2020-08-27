@@ -119,8 +119,8 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
 
     private fun alertDialog(slug: String){
         val alert = AlertDialog.Builder(this)
-        alert.setTitle(R.string.alert_title)
-            .setMessage(R.string.alert_descripción)
+        alert.setTitle(R.string.alert_title_country)
+            .setMessage(R.string.alert_description_country)
             .setPositiveButton(R.string.alert_ok){_, _-> //evento click
                 nextActivity(slug)
             }
@@ -140,10 +140,10 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
         editor.apply()
         println("\n Preferencias: "+preferences.getString("slug", ""))
         showMessage(preferences.getString("slug", "")!!)
-        //editor.apply()
-        /*val intent = Intent(this@SelectionActivity, MainActivity::class.java)
+        editor.apply()
+        val intent = Intent(this@SelectionActivity, MainActivity::class.java)
         startActivity(intent)
-        finish()*/
+        finish()
     }
 
     /**

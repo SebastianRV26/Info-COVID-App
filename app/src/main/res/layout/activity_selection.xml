@@ -16,7 +16,7 @@
         android:layout_height="10dp"
         android:indeterminate="true"
         android:indeterminateBehavior="repeat"
-        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTint="@color/colorAccent"
         android:scaleY="4" />
 
     <SearchView

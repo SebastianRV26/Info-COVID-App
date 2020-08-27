@@ -15,5 +15,5 @@ interface CountyService {
     fun getCountries() : Call<List<Country>>
 
     @GET("dayone/country/{country}")
-    fun getCountry(@Path("country")country:String) : Call<Cases>
+    fun getCountry(@Path("country")country:String) : Call<List<Cases>>
 }

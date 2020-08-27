@@ -17,9 +17,20 @@
     <string name="select_your_country">
         Favor buscar y seleccionar su país en la siguiente lista</string>
     <string name="next">Siguiente</string>
-    <string name="alert_title">¿Está seguro de que desea guardar el país?</string>
-    <string name="alert_descripción">Tranquilo, podrás cambiar de país luego</string>
+
+    <!-- Cases Activity -->
+    <string name="country">Pais:</string>
+    <string name="date">Fecha:</string>
+    <string name="confirmed">Confirmados:</string>
+    <string name="deaths">Muertes:</string>
+    <string name="recovered">Recuperados:</string>
+    <string name="active">Activos:</string>
+    <string name="change_country">Cambiar País</string>
+
+    <!-- Alert Dialogs -->
+    <string name="alert_title_country">¿Está seguro de que desea guardar el país?</string>
+    <string name="alert_description_country">Tranquilo, podrás cambiar de país luego</string>
     <string name="alert_ok">Aceptar</string>
     <string name="alert_no">Cancelar</string>
-    app_alertTitle
+    <string name="alert_title_cases">¿Está seguro de que desea cambiar de país?</string>
 </resources>
