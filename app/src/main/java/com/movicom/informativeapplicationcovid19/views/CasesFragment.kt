@@ -1,6 +1,7 @@
 package com.movicom.informativeapplicationcovid19.views
 
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,13 +19,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * Controlador de vista: Paises.
+ * Controlador de vista: Casos de un paises.
  */
 class CasesFragment : Fragment() {
 
     private lateinit var mRecyclerView: RecyclerView
     private var mAdapter: CountryAdapter = CountryAdapter()
     private lateinit var countries: ArrayList<Country>
+    private lateinit var slug:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,8 @@ class CasesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_cases, container, false)
+        val preferences = this.activity!!.getSharedPreferences("data", Context.MODE_PRIVATE)
+        this.slug = preferences.getString("slug","")!!
         setUpRecyclerView(view)
         return view
     }

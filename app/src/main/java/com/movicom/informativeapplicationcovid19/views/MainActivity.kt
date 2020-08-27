@@ -1,5 +1,6 @@
 package com.movicom.informativeapplicationcovid19.views
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem

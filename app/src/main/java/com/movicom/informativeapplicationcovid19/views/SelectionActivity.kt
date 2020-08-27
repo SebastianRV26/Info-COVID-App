@@ -1,13 +1,14 @@
 package com.movicom.informativeapplicationcovid19.views
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.movicom.informativeapplicationcovid19.R
-import com.movicom.informativeapplicationcovid19.adapters.CountryAdapter
 import com.movicom.informativeapplicationcovid19.models.Country
 import com.movicom.informativeapplicationcovid19.network.Api
 import kotlinx.android.synthetic.main.activity_selection.*
@@ -17,7 +18,7 @@ import retrofit2.Response
 
 
 /**
- *
+ * Controlador de vista: Actividad de selección del país.
  */
 class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
@@ -27,6 +28,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     private var countries:ArrayList<String> = arrayListOf() // Lista de paises.
     private var slugs:ArrayList<String> = arrayListOf() // Lista de diminutivos de paises.
     private var lvCountries:ListView ?= null
+    private lateinit var actualCountries:ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,6 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
         btnCpuntry = findViewById(R.id.btnCpuntry)
 
         svCountry!!.setOnQueryTextListener(this)
-        //rvCountrys!!.setOn
         btnCpuntry!!.setOnClickListener(this)
 
         lvCountries!!.setOnItemClickListener(this)
@@ -55,8 +56,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     /**
      * @return lista de paises.
      */
-    private fun getCountries (): ArrayList<Country> {
-        val listCountries: ArrayList<Country> = arrayListOf()
+    private fun getCountries() {
         Api.getInstance().getCountyService()
             .getCountries().enqueue(object: Callback<List<Country>> {
                 override fun onResponse(
@@ -67,9 +67,8 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
                         val body = response.body()
                         body?.forEach {
                             countries.add(it.Country)
-                            slugs.add(it.Slug)
+                            slugs.add(it.ISO2)
                         }
-                        // mAdapter.notifyDataSetChanged()
                     } else {
                         showMessage("Ha habido un error ${response.code()}, inténtelo más tarde")
                     }
@@ -80,7 +79,6 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
                     t?.printStackTrace()
                 }
             })
-        return listCountries
     }
 
     /**
@@ -104,6 +102,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
         val mAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
             suggestedCountries)
         lvCountries!!.adapter = mAdapter
+        actualCountries = suggestedCountries
         return true
     }
 
@@ -111,7 +110,40 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
      * Cuando se preciona un país.
      */
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val country = actualCountries[p2]
+        println("\n country "+country)
+        val position = countries.indexOf(country)
+        println("\n position "+position)
+        alertDialog(slugs[position])
+    }
 
+    private fun alertDialog(slug: String){
+        val alert = AlertDialog.Builder(this)
+        alert.setTitle(R.string.alert_title)
+            .setMessage(R.string.alert_descripción)
+            .setPositiveButton(R.string.alert_ok){_, _-> //evento click
+                nextActivity(slug)
+            }
+            .setNeutralButton(R.string.alert_no){_, _-> } //no hará nada, solo quitar el dialog
+            .show()
+    }
+
+    /**
+     * Guardar el diminutivo en SharedPreferences y pasar al MainActivity.
+     *
+     * @param slug diminutivo del país.
+     */
+    private fun nextActivity(slug:String){
+        val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("slug", slug)
+        editor.apply()
+        println("\n Preferencias: "+preferences.getString("slug", ""))
+        showMessage(preferences.getString("slug", "")!!)
+        //editor.apply()
+        /*val intent = Intent(this@SelectionActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()*/
     }
 
     /**
