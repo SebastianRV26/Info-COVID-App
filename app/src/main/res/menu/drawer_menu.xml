@@ -7,7 +7,7 @@
 
         <item
             android:id="@+id/casesByCountry"
-            android:title="@string/cases_per_country"
+            android:title="@string/country_cases"
             android:icon="@drawable/ic_action_cases_by_country"/>
 
         <item

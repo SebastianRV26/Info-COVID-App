@@ -1,5 +1,6 @@
 package com.movicom.informativeapplicationcovid19.views
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +13,16 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Comprueba si existe barra de navegación y la oculta.
-        //if (supportActionBar != null) supportActionBar!!.hide()
-
-        val intent = Intent(this, SelectionActivity::class.java)
-        startActivity(intent)
-        finish()
+        val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
+        val slug = preferences.getString("slug","")!!
+        if (slug=="") {
+            val intent = Intent(this, SelectionActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

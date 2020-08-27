@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">Informative Application Covid 19</string>
 
+    <!-- Menu -->
     <string name="open">Open</string>
     <string name="close">Close</string>
-
-    <!-- Menu -->
-    <string name="cases_per_country">Casos por país</string>
+    <string name="country_cases">Casos del país</string>
     <string name="about_page">Acerca de</string>
-
-    <!-- About Page -->
-    <string name="developer_name">Sebastián Rojas Vargas</string>
-    <string name="contact">Contacto</string>
+    <string name="nd_title">COVID-19</string>
+    <string name="nd_description">Menú de opciones</string>
 
     <!-- Country Activity -->
     <string name="enter_your_country">Ingrese su país</string>
@@ -26,6 +23,7 @@
     <string name="recovered">Recuperados:</string>
     <string name="active">Activos:</string>
     <string name="change_country">Cambiar País</string>
+    <string name="new_cases">Nuevos casos</string>
 
     <!-- Alert Dialogs -->
     <string name="alert_title_country">¿Está seguro de que desea guardar el país?</string>
@@ -33,4 +31,15 @@
     <string name="alert_ok">Aceptar</string>
     <string name="alert_no">Cancelar</string>
     <string name="alert_title_cases">¿Está seguro de que desea cambiar de país?</string>
+
+    <!-- Mensajes informativos -->
+    <string name="msj_no_country">Lo sentimos, no se han encontrado casos para este país</string>
+    <string name="msj_error">Ha habido un error, inténtelo más tarde</string>
+
+    <!-- About Page -->
+    <string name="developer_name">Sebastián Rojas Vargas</string>
+    <string name="contact">Contacto</string>
+    <string name="dev_github">SebastianRV26</string>
+    <string name="dev_linkedin">sebastian-rojas-vargas</string>
+
 </resources>

@@ -4,24 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="@drawable/background"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
     <TextView
         android:layout_marginTop="95dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="COVID-19"
+        android:text="@string/nd_title"
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menú de opciones"
+        android:text="@string/nd_description"
         android:textColor="@color/colorWhite"
-        android:textSize="18sp"
-        />
+        android:textSize="18sp" />
 
 </LinearLayout>

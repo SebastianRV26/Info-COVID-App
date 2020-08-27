@@ -35,10 +35,10 @@ class AboutFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0!!.id) {
             R.id.ivGitHub -> {
-                Toast.makeText(activity, "SebastianRV26", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.dev_github, Toast.LENGTH_LONG).show()
             }
             R.id.ivLinkedIn -> {
-                Toast.makeText(activity, "sebastian-rojas-vargas", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.dev_linkedin, Toast.LENGTH_LONG).show()
             }
         }
     }

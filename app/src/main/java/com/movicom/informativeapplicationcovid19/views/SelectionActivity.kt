@@ -47,7 +47,6 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onClick(p0: View?) {
-        showMessage("Tamaño: "+countries.size)
         val intent = Intent (this, MainActivity::class.java)
         startActivity(intent)
         finish()
@@ -75,7 +74,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
                 }
                 override fun onFailure(call: Call<List<Country>>, t:Throwable?) {
                     println("\n Error "+t?.message.toString())
-                    showMessage("Ha habido un error, inténtelo más tarde")
+                    showMessage(getString(R.string.msj_error))
                     t?.printStackTrace()
                 }
             })
@@ -111,9 +110,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
      */
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val country = actualCountries[p2]
-        println("\n country "+country)
         val position = countries.indexOf(country)
-        println("\n position "+position)
         alertDialog(slugs[position])
     }
 
@@ -137,9 +134,6 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
         val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor = preferences.edit()
         editor.putString("slug", slug)
-        editor.apply()
-        println("\n Preferencias: "+preferences.getString("slug", ""))
-        showMessage(preferences.getString("slug", "")!!)
         editor.apply()
         val intent = Intent(this@SelectionActivity, MainActivity::class.java)
         startActivity(intent)

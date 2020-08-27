@@ -1,6 +1,5 @@
 package com.movicom.informativeapplicationcovid19.views
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(toolbar)
         actionBar = supportActionBar!!
-        actionBar.title = getString(R.string.cases_per_country)
+        actionBar.title = getString(R.string.country_cases)
 
         val drawerToggle : ActionBarDrawerToggle = object: ActionBarDrawerToggle(
             this, drawerLayout, toolbar,(R.string.open), (R.string.close)){
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId){
             R.id.casesByCountry -> {
-                actionBar.title = getString(R.string.cases_per_country)
+                actionBar.title = getString(R.string.country_cases)
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, casesFragment)

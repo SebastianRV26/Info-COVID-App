@@ -8,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.movicom.informativeapplicationcovid19.R
 import com.movicom.informativeapplicationcovid19.models.Cases
-import com.movicom.informativeapplicationcovid19.models.Country
 import com.movicom.informativeapplicationcovid19.network.Api
-import kotlinx.android.synthetic.main.activity_selection.*
+import kotlinx.android.synthetic.main.activity_selection.progress_bar
+import kotlinx.android.synthetic.main.fragment_cases.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,12 +24,6 @@ import retrofit2.Response
  */
 class CasesFragment : Fragment(), View.OnClickListener {
 
-    private var tvCountry:TextView ?= null
-    private var tvDate:TextView ?= null
-    private var tvConfirmed:TextView ?= null
-    private var tvDeaths:TextView ?= null
-    private var tvRecovered:TextView ?= null
-    private var tvActive:TextView ?= null
     private var btnChangeCountry:Button ?= null
 
     private lateinit var slug:String
@@ -44,12 +37,6 @@ class CasesFragment : Fragment(), View.OnClickListener {
         val preferences = this.activity!!.getSharedPreferences("data", Context.MODE_PRIVATE)
         this.slug = preferences.getString("slug","")!!
 
-        tvCountry = view.findViewById(R.id.tvCountry)
-        tvDate = view.findViewById(R.id.tvDate)
-        tvConfirmed = view.findViewById(R.id.tvConfirmed)
-        tvDeaths = view.findViewById(R.id.tvDeaths)
-        tvRecovered = view.findViewById(R.id.tvRecovered)
-        tvActive = view.findViewById(R.id.tvActive)
         btnChangeCountry = view.findViewById(R.id.btnChangeCountry)
 
         btnChangeCountry!!.setOnClickListener(this)
@@ -70,20 +57,34 @@ class CasesFragment : Fragment(), View.OnClickListener {
                     if (response?.isSuccessful!!) { // si success es true
                         val body = response.body()
                         if (body?.size == 0){
-                            showMessage("Lo sentimos, no se han encontrado casos para este país")
+                            showMessage(getString(R.string.msj_no_country))
                             changeActivity()
                         } else {
-                            val case = body!![body.size - 1]
-                            val date = (case.Date).split("-")
-                            tvCountry!!.text = getString(R.string.country) + " " + case.Country
-                            tvDate!!.text = getString(R.string.date) + " " +
-                                    date[2][0] + date[2][1] + "/" + date[1] + "/" + date[0]
-                            tvConfirmed!!.text =
-                                getString(R.string.confirmed) + " " + case.Confirmed
-                            tvDeaths!!.text = getString(R.string.deaths) + " " + case.Deaths
-                            tvRecovered!!.text =
-                                getString(R.string.recovered) + " " + case.Recovered
-                            tvActive!!.text = getString(R.string.active) + " " + case.Active
+                            val cases = body!![body.size - 1]
+                            val date = (cases.Date).split("-")
+                            tvCountry!!.text = getString(R.string.country).plus(" ")
+                                .plus(cases.Country)
+                            tvDate!!.text = getString(R.string.date).plus(" ")
+                                .plus(date[2][0]).plus(date[2][1]).plus("/")
+                                .plus(date[1]).plus("/").plus(date[0])
+                            tvConfirmed!!.text = getString(R.string.confirmed)
+                                .plus(" ").plus(cases.Confirmed)
+                            tvDeaths!!.text = getString(R.string.deaths).plus(" ")
+                                .plus(cases.Deaths)
+                            tvRecovered!!.text = getString(R.string.recovered)
+                                .plus(" ").plus(cases.Recovered)
+                            tvActive!!.text = getString(R.string.active).plus(" ")
+                                .plus(cases.Active)
+
+                            val cases2 = body[body.size - 2]
+                            tvNewConfirmed!!.text = getString(R.string.confirmed).plus(" ")
+                                .plus(cases.Confirmed - cases2.Confirmed)
+                            tvNewDeaths!!.text = getString(R.string.deaths).plus(" ")
+                                .plus(cases.Deaths - cases2.Deaths)
+                            tvNewRecovered!!.text = getString(R.string.recovered)
+                                .plus(" ").plus(cases.Recovered - cases2.Recovered)
+                            tvNewActive!!.text = getString(R.string.active).plus(" ")
+                                .plus(cases.Active - cases2.Active)
                         }
                     } else {
                         showMessage("Ha habido un error ${response.code()}, inténtelo más tarde")
@@ -91,7 +92,7 @@ class CasesFragment : Fragment(), View.OnClickListener {
                 }
                 override fun onFailure(call: Call<List<Cases>>, t:Throwable?) {
                     println("\n Error "+t?.message.toString())
-                    showMessage("Ha habido un error, inténtelo más tarde")
+                    showMessage(getString(R.string.msj_error))
                     t?.printStackTrace()
                 }
             })
