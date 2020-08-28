@@ -41,5 +41,10 @@
     <string name="contact">Contacto</string>
     <string name="dev_github">SebastianRV26</string>
     <string name="dev_linkedin">sebastian-rojas-vargas</string>
-
+    <string name="dev_info">Estudiante de ingeniería en computación en el Instituto Tecnológico de Costa Rica.</string>
+    <string name="dev_job">Desarrollador móvil en</string>
+    <string name="dev_community">Comunidad de Aplicaciones Móviles ITCR.</string>
+    <string name="year">Desarrollada en el año 2020</string>
+    <string name="movicom">comunidadmovilsc</string>
+    <string name="tec">tec.ac.cr</string>
 </resources>

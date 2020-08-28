@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,59 +10,144 @@
     android:padding="20dp"
     tools:context=".views.AboutFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/developer_name"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/profile" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact"
-        android:textSize="26sp"
-        android:textStyle="bold" />
-
     <LinearLayout
+        android:id="@+id/ll1about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rounded_corners"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_name"
+            android:textColor="@color/colorBlack"
+            android:textSize="26sp"
+            android:textStyle="bold|italic" />
 
         <ImageView
-            android:id="@+id/ivGitHub"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/github" />
+            android:id="@+id/ivDeveloper"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
 
-        <ImageView
-            android:id="@+id/ivLinkedIn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/linkedin" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/dev_info"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/dev_job"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/dev_community"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/ll2about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:layout_below="@id/ll1about"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GitHub"/>
+            android:layout_weight="1"
+            android:text="Educación"
+            android:textColor="@color/colorBlack"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivTEC"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:src="@drawable/logo_tec" />
+
+            <ImageView
+                android:id="@+id/ivMovicom"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/logo_movicom" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll2about"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LinkedIn"/>
+            android:text="@string/contact"
+            android:textColor="@color/colorBlack"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivLinkedIn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/linkedin" />
+
+            <ImageView
+                android:id="@+id/ivGitHub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/github" />
+
+        </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/year"
+        android:textColor="@color/colorBlack" />
+
+</RelativeLayout>

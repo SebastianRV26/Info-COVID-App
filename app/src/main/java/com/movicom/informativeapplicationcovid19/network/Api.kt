@@ -19,6 +19,7 @@ class Api {
     init {
         retrofit = Retrofit.Builder()
             .baseUrl("https://api.covid19api.com/")
+            .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
