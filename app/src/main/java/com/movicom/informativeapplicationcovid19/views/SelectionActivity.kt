@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.movicom.informativeapplicationcovid19.R
 import com.movicom.informativeapplicationcovid19.models.Country
 import com.movicom.informativeapplicationcovid19.network.Api
+import com.movicom.informativeapplicationcovid19.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_selection.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,11 +21,10 @@ import retrofit2.Response
 /**
  * Controlador de vista: Actividad de selección del país.
  */
-class SelectionActivity : AppCompatActivity(), View.OnClickListener,
+class SelectionActivity : AppCompatActivity(),
     SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
 
     private var svCountry: SearchView?= null
-    private var btnCpuntry:Button ?= null
     private var countries:ArrayList<String> = arrayListOf() // Lista de paises.
     private var slugs:ArrayList<String> = arrayListOf() // Lista de diminutivos de paises.
     private var lvCountries:ListView ?= null
@@ -36,20 +36,12 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
 
         svCountry = findViewById(R.id.svCountry)
         lvCountries = findViewById(R.id.lvCountries)
-        btnCpuntry = findViewById(R.id.btnCpuntry)
 
         svCountry!!.setOnQueryTextListener(this)
-        btnCpuntry!!.setOnClickListener(this)
 
         lvCountries!!.setOnItemClickListener(this)
 
         getCountries()
-    }
-
-    override fun onClick(p0: View?) {
-        val intent = Intent (this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     /**
@@ -69,12 +61,14 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
                             slugs.add(it.ISO2)
                         }
                     } else {
-                        showMessage("Ha habido un error ${response.code()}, inténtelo más tarde")
+                        UIUtils.showMessage(this@SelectionActivity,
+                            "Ha habido un error ${response.code()}, inténtelo más tarde")
                     }
                 }
                 override fun onFailure(call: Call<List<Country>>, t:Throwable?) {
                     println("\n Error "+t?.message.toString())
-                    showMessage(getString(R.string.msj_error))
+                    UIUtils.showMessage(this@SelectionActivity,
+                        getString(R.string.msj_error))
                     t?.printStackTrace()
                 }
             })
@@ -146,15 +140,6 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     private fun hideKeyboard(){
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(viewRoot.windowToken, 0)
-    }
-
-    /**
-     * Mostrar un mensaje en forma de Toast.
-     *
-     * @param message mensaje a mostrar.
-     */
-    private fun showMessage(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
 }

@@ -2,17 +2,18 @@ package com.movicom.informativeapplicationcovid19.views
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.movicom.informativeapplicationcovid19.R
 import com.movicom.informativeapplicationcovid19.models.Cases
 import com.movicom.informativeapplicationcovid19.network.Api
+import com.movicom.informativeapplicationcovid19.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_selection.progress_bar
 import kotlinx.android.synthetic.main.fragment_cases.*
 import retrofit2.Call
@@ -25,7 +26,7 @@ import retrofit2.Response
 class CasesFragment : Fragment(), View.OnClickListener {
 
     private var btnChangeCountry:Button ?= null
-
+    private lateinit var preferences:SharedPreferences
     private lateinit var slug:String
 
     override fun onCreateView(
@@ -34,8 +35,8 @@ class CasesFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_cases, container, false)
-        val preferences = this.activity!!.getSharedPreferences("data", Context.MODE_PRIVATE)
-        this.slug = preferences.getString("slug","")!!
+        preferences = this.activity!!.getSharedPreferences("data", Context.MODE_PRIVATE)
+        slug = preferences.getString("slug","")!!
 
         btnChangeCountry = view.findViewById(R.id.btnChangeCountry)
 
@@ -57,7 +58,7 @@ class CasesFragment : Fragment(), View.OnClickListener {
                     if (response?.isSuccessful!!) { // si success es true
                         val body = response.body()
                         if (body?.size == 0){
-                            showMessage(getString(R.string.msj_no_country))
+                            UIUtils.showMessage(context!!, getString(R.string.msj_no_country))
                             changeActivity()
                         } else {
                             val cases = body!![body.size - 1]
@@ -87,12 +88,12 @@ class CasesFragment : Fragment(), View.OnClickListener {
                                 .plus(cases.Active - cases2.Active)
                         }
                     } else {
-                        showMessage("Ha habido un error ${response.code()}, inténtelo más tarde")
+                        UIUtils.showMessage(context!!, "Ha habido un error ${response.code()}, inténtelo más tarde")
                     }
                 }
                 override fun onFailure(call: Call<List<Cases>>, t:Throwable?) {
                     println("\n Error "+t?.message.toString())
-                    showMessage(getString(R.string.msj_error))
+                    UIUtils.showMessage(context!!, getString(R.string.msj_error))
                     t?.printStackTrace()
                 }
             })
@@ -119,17 +120,12 @@ class CasesFragment : Fragment(), View.OnClickListener {
      * Cambiar de actividad.
      */
     private fun changeActivity(){
+        val editor = preferences.edit()
+        editor.putString("slug", "")
+        editor.apply()
         val intent = Intent(context, SelectionActivity::class.java)
         startActivity(intent)
         activity?.finish()
     }
 
-    /**
-     * Mostrar un mensaje en forma de Toast.
-     *
-     * @param message mensaje a mostrar.
-     */
-    private fun showMessage(message: String){
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-    }
 }

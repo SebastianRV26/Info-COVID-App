@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.movicom.informativeapplicationcovid19.R
+import com.movicom.informativeapplicationcovid19.utils.UIUtils
 
 /**
  * Controlador de vista: Acerca de.
@@ -35,10 +36,10 @@ class AboutFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0!!.id) {
             R.id.ivGitHub -> {
-                Toast.makeText(activity, R.string.dev_github, Toast.LENGTH_LONG).show()
+                UIUtils.showMessage(context!!, getString(R.string.dev_github))
             }
             R.id.ivLinkedIn -> {
-                Toast.makeText(activity, R.string.dev_linkedin, Toast.LENGTH_LONG).show()
+                UIUtils.showMessage(context!!, getString(R.string.dev_linkedin))
             }
         }
     }
