@@ -88,10 +88,12 @@ class CasesFragment : Fragment(), View.OnClickListener {
                                 .plus(cases.Active - cases2.Active)
                         }
                     } else {
+                        progress_bar.visibility = View.GONE
                         UIUtils.showMessage(context!!, "Ha habido un error ${response.code()}, inténtelo más tarde")
                     }
                 }
                 override fun onFailure(call: Call<List<Cases>>, t:Throwable?) {
+                    progress_bar.visibility = View.GONE
                     println("\n Error "+t?.message.toString())
                     UIUtils.showMessage(context!!, getString(R.string.msj_error))
                     t?.printStackTrace()

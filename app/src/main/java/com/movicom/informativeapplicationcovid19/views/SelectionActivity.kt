@@ -21,7 +21,7 @@ import retrofit2.Response
 /**
  * Controlador de vista: Actividad de selección del país.
  */
-class SelectionActivity : AppCompatActivity(),
+class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
 
     private var svCountry: SearchView?= null
@@ -44,6 +44,12 @@ class SelectionActivity : AppCompatActivity(),
         getCountries()
     }
 
+    override fun onClick(p0: View?) {
+        val intent = Intent (this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     /**
      * @return lista de paises.
      */
@@ -61,14 +67,13 @@ class SelectionActivity : AppCompatActivity(),
                             slugs.add(it.ISO2)
                         }
                     } else {
-                        UIUtils.showMessage(this@SelectionActivity,
-                            "Ha habido un error ${response.code()}, inténtelo más tarde")
+                        UIUtils.showMessage(this@SelectionActivity, "Ha habido un error ${response.code()}, inténtelo más tarde")
                     }
                 }
                 override fun onFailure(call: Call<List<Country>>, t:Throwable?) {
+                    progress_bar.visibility = View.GONE
                     println("\n Error "+t?.message.toString())
-                    UIUtils.showMessage(this@SelectionActivity,
-                        getString(R.string.msj_error))
+                    UIUtils.showMessage(this@SelectionActivity, getString(R.string.msj_error))
                     t?.printStackTrace()
                 }
             })

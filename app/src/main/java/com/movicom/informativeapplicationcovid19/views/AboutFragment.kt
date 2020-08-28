@@ -8,10 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.movicom.informativeapplicationcovid19.R
-import com.movicom.informativeapplicationcovid19.utils.UIUtils
 import com.squareup.picasso.Picasso
 
 
