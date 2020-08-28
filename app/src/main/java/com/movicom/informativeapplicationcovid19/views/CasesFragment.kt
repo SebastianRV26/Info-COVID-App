@@ -89,7 +89,8 @@ class CasesFragment : Fragment(), View.OnClickListener {
                         }
                     } else {
                         progress_bar.visibility = View.GONE
-                        UIUtils.showMessage(context!!, "Ha habido un error ${response.code()}, inténtelo más tarde")
+                        UIUtils.showMessage(context!!,
+                            "${getString(R.string.msj_error1)} ${response.code()} ${getString(R.string.msj_error2)}")
                     }
                 }
                 override fun onFailure(call: Call<List<Cases>>, t:Throwable?) {

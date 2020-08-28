@@ -1,6 +1,5 @@
 package com.movicom.informativeapplicationcovid19.views
 
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.movicom.informativeapplicationcovid19.R
 import com.squareup.picasso.Picasso
-
 
 /**
  * Controlador de vista: Acerca de.
@@ -62,11 +60,21 @@ class AboutFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    /**
+     * Intento de abrir una página web.
+     *
+     * @param url dirección web.
+     */
     private fun loadUrl(url:String){
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.${url}/"))
         startActivity(intent)
     }
 
+    /**
+     * Mostrar una imagen de internet con la librería Picasso.
+     *
+     * @param url
+     */
     private fun ImageView.loadUrl(url: String) {
         Picasso.with(context).load("https://avatars.githubusercontent.com/$url").into(this)
     }

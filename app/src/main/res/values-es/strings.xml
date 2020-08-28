@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Info COVID App</string>
+
+    <!-- Menu -->
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+    <string name="country_cases">Casos del país</string>
+    <string name="about_page">Acerca de</string>
+    <string name="nd_title">COVID-19</string>
+    <string name="nd_description">Menú de opciones</string>
+
+    <!-- Country Activity -->
+    <string name="enter_your_country">Ingrese su país</string>
+    <string name="select_your_country">
+        Favor buscar y seleccionar su país en la siguiente lista</string>
+    <string name="next">Siguiente</string>
+    <string name="note">Nota: Los paises aparecen en inglés.</string>
+
+    <!-- Cases Activity -->
+    <string name="country">País:</string>
+    <string name="date">Fecha:</string>
+    <string name="confirmed">Confirmados:</string>
+    <string name="deaths">Muertes:</string>
+    <string name="recovered">Recuperados:</string>
+    <string name="active">Activos:</string>
+    <string name="change_country">Cambiar País</string>
+    <string name="new_cases">Nuevos casos</string>
+
+    <!-- Alert Dialogs -->
+    <string name="alert_title_country">¿Está seguro de que desea guardar el país?</string>
+    <string name="alert_description_country">Tranquilo, podrás cambiar de país luego</string>
+    <string name="alert_ok">Aceptar</string>
+    <string name="alert_no">Cancelar</string>
+    <string name="alert_title_cases">¿Está seguro de que desea cambiar de país?</string>
+
+    <!-- Mensajes informativos -->
+    <string name="msj_no_country">
+        Lo sentimos, no se han encontrado casos para este país</string>
+    <string name="msj_error">Ha habido un error, inténtelo más tarde</string>
+    <string name="msj_error1">Ha habido un error</string>
+    <string name="msj_error2">, inténtelo más tarde</string>
+
+    <!-- About Page -->
+    <string name="developer_name">Sebastián Rojas Vargas</string>
+    <string name="education">Educación</string>
+    <string name="contact">Contacto</string>
+    <string name="dev_github">SebastianRV26</string>
+    <string name="dev_linkedin">sebastian-rojas-vargas</string>
+    <string name="dev_info">Estudiante de ingeniería en computación en el Instituto
+        Tecnológico de Costa Rica (ITCR).</string>
+    <string name="dev_job">Desarrollador Móvil en la</string>
+    <string name="dev_community">Comunidad de Aplicaciones Móviles ITCR.</string>
+    <string name="year">Desarrollada en el año 2020</string>
+    <string name="movicom">comunidadmovilsc</string>
+    <string name="tec">tec.ac.cr</string>
+
+</resources>

@@ -17,7 +17,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 /**
  * Controlador de vista: Actividad de selección del país.
  */
@@ -67,8 +66,8 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
                             slugs.add(it.ISO2)
                         }
                     } else {
-                        UIUtils.showMessage(this@SelectionActivity, "Ha habido un error ${response.code()}, inténtelo más tarde")
-                    }
+                        UIUtils.showMessage(this@SelectionActivity,
+                            "${getString(R.string.msj_error1)} ${response.code()}, ${getString(R.string.msj_error2)}")                    }
                 }
                 override fun onFailure(call: Call<List<Country>>, t:Throwable?) {
                     progress_bar.visibility = View.GONE

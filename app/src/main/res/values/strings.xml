@@ -4,51 +4,53 @@
     <!-- Menu -->
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="country_cases">Casos del país</string>
-    <string name="about_page">Acerca de</string>
+    <string name="country_cases">Country cases</string>
+    <string name="about_page">About</string>
     <string name="nd_title">COVID-19</string>
-    <string name="nd_description">Menú de opciones</string>
+    <string name="nd_description">Option menu</string>
 
     <!-- Country Activity -->
-    <string name="enter_your_country">Ingrese su país</string>
+    <string name="enter_your_country">Enter your country</string>
     <string name="select_your_country">
-        Favor buscar y seleccionar su país en la siguiente lista</string>
+        Please find and select your country in the following list</string>
     <string name="next">Siguiente</string>
+    <string name="note">Note: Countries appear in English.</string>
 
     <!-- Cases Activity -->
-    <string name="country">Pais:</string>
-    <string name="date">Fecha:</string>
-    <string name="confirmed">Confirmados:</string>
-    <string name="deaths">Muertes:</string>
-    <string name="recovered">Recuperados:</string>
-    <string name="active">Activos:</string>
-    <string name="change_country">Cambiar País</string>
-    <string name="new_cases">Nuevos casos</string>
+    <string name="country">Country:</string>
+    <string name="date">Date:</string>
+    <string name="confirmed">Confirmed:</string>
+    <string name="deaths">Deaths:</string>
+    <string name="recovered">Recovered:</string>
+    <string name="active">Active:</string>
+    <string name="change_country">Change Country</string>
+    <string name="new_cases">New cases</string>
 
     <!-- Alert Dialogs -->
-    <string name="alert_title_country">¿Está seguro de que desea guardar el país?</string>
-    <string name="alert_description_country">Tranquilo, podrás cambiar de país luego</string>
-    <string name="alert_ok">Aceptar</string>
-    <string name="alert_no">Cancelar</string>
-    <string name="alert_title_cases">¿Está seguro de que desea cambiar de país?</string>
+    <string name="alert_title_country">Are you sure you want to save the country?</string>
+    <string name="alert_description_country">Do not worry, you can change country later</string>
+    <string name="alert_ok">Accept</string>
+    <string name="alert_no">Cancel</string>
+    <string name="alert_title_cases">Are you sure you want to change country?</string>
 
     <!-- Mensajes informativos -->
-    <string name="msj_no_country">
-        Lo sentimos, no se han encontrado casos para este país</string>
-    <string name="msj_error">Ha habido un error, inténtelo más tarde</string>
+    <string name="msj_no_country">Sorry, no cases found for this country</string>
+    <string name="msj_error">There was an error, please try again later</string>
+    <string name="msj_error1">A</string>
+    <string name="msj_error2">error has occurred, try again later</string>
 
     <!-- About Page -->
-    <string name="developer_name">Sebastián Rojas Vargas</string>
-    <string name="education">Educación</string>
-    <string name="contact">Contacto</string>
+    <string name="developer_name">Sebastian Rojas Vargas</string>
+    <string name="education">Education</string>
+    <string name="contact">Contact</string>
     <string name="dev_github">SebastianRV26</string>
     <string name="dev_linkedin">sebastian-rojas-vargas</string>
-    <string name="dev_info">Estudiante de ingeniería en computación en el Instituto
-        Tecnológico de Costa Rica.</string>
-    <string name="dev_job">Desarrollador móvil en</string>
-    <string name="dev_community">Comunidad de Aplicaciones Móviles ITCR.</string>
-    <string name="year">Desarrollada en el año 2020</string>
+    <string name="dev_info">Computer engineering student at the Technological
+        Institute of Costa Rica (ITCR).</string>
+    <string name="dev_job">Mobile Developer at</string>
+    <string name="dev_community">ITCR Mobile Applications Community.</string>
+    <string name="year">Developed in 2020</string>
     <string name="movicom">comunidadmovilsc</string>
     <string name="tec">tec.ac.cr</string>
-    
+
 </resources>
