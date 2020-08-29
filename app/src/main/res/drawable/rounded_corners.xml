@@ -5,12 +5,12 @@
 
     <!-- Color de fondo de la vista -->
     <solid
-        android:color="@color/colorGray" >
+        android:color="@color/colorOrange" >
     </solid>
 
     <!-- Color y ancho del borde del elemento -->
     <stroke
-        android:width="3dp"
+        android:width="2dp"
         android:color="#1c1b20" >
     </stroke>
 
@@ -24,7 +24,6 @@
 
     <!-- Aquí indicamos el radio a aplicar a las esquinas -->
     <corners
-        android:radius="10dp"   >
-    </corners>
+        android:radius="20dp" />
 
 </shape>

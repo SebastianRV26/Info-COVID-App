@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:layout_marginTop="50dp"
+    android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".views.CasesFragment">
@@ -13,7 +14,6 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_marginTop="50dp"
         android:indeterminate="true"
         android:indeterminateBehavior="repeat"
         android:indeterminateTint="@color/colorAccent"
@@ -24,7 +24,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_corners"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -34,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/country"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -44,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/date"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <TextView
@@ -54,7 +53,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="@string/confirmed"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <TextView
@@ -62,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recovered"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <TextView
@@ -72,7 +71,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="@string/active"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <TextView
@@ -80,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/deaths"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -90,53 +89,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corners"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_cases"
-        android:textColor="@color/colorBlack"
-        android:textSize="26sp"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvNewConfirmed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/confirmed"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_cases"
+            android:textColor="@color/colorWhite"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvNewRecovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/recovered"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tvNewConfirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/confirmed"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/tvNewActive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/active"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tvNewRecovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recovered"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/tvNewDeaths"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/deaths"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tvNewActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/active"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvNewDeaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deaths"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -146,5 +146,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="@string/change_country" />
+        android:text="@string/change_country"
+        android:textColor="@color/colorWhite" />
 </LinearLayout>
