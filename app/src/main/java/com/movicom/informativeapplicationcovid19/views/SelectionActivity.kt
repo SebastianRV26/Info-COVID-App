@@ -8,14 +8,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.movicom.informativeapplicationcovid19.R
 import com.movicom.informativeapplicationcovid19.models.Country
-import com.movicom.informativeapplicationcovid19.network.Api
-import com.movicom.informativeapplicationcovid19.utils.UIUtils
+import com.movicom.informativeapplicationcovid19.viewmodel.CountryViewModel
 import kotlinx.android.synthetic.main.activity_selection.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Controlador de vista: Actividad de selección del país.
@@ -23,59 +21,47 @@ import retrofit2.Response
 class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
 
-    private var svCountry: SearchView?= null
-    private var countries:ArrayList<String> = arrayListOf() // Lista de paises.
-    private var slugs:ArrayList<String> = arrayListOf() // Lista de diminutivos de paises.
-    private var lvCountries:ListView ?= null
-    private lateinit var actualCountries:ArrayList<String>
+    private lateinit var actualCountries: ArrayList<String>
+    private lateinit var viewModel: CountryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selection)
 
-        svCountry = findViewById(R.id.svCountry)
-        lvCountries = findViewById(R.id.lvCountries)
+        viewModel = ViewModelProvider(this).get(CountryViewModel::class.java)
+        viewModel.refresh()
 
         svCountry!!.setOnQueryTextListener(this)
+        svCountry!!.onActionViewExpanded()
+        lvCountries.setOnItemClickListener(this)
 
-        lvCountries!!.setOnItemClickListener(this)
+        observeViewModel()
+    }
 
-        getCountries()
+    private fun observeViewModel() {
+        /*viewModel.countries.observe(this, Observer<List<Country>> { countries ->
+            // mAdapter.updateData(countries)
+        })*/
+
+        viewModel.message.observe(this, Observer<String> {
+            showAlert(viewModel.message.value)
+        })
+    }
+
+    private fun showAlert(message: String?) {
+        val error = getDialog(message)
+        error.show()
+    }
+
+    private fun getDialog(message: String?): AlertDialog.Builder {
+        return AlertDialog.Builder(this)
+            .setMessage(message)
     }
 
     override fun onClick(p0: View?) {
-        val intent = Intent (this, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    /**
-     * @return lista de paises.
-     */
-    private fun getCountries() {
-        Api.getInstance().getCountyService()
-            .getCountries().enqueue(object: Callback<List<Country>> {
-                override fun onResponse(
-                    call: Call<List<Country>>, response: Response<List<Country>>?) {
-                    progress_bar.visibility = View.GONE
-                    svCountry!!.onActionViewExpanded()
-                    if (response?.isSuccessful!!) { // si success es true
-                        val body = response.body()
-                        body?.forEach {
-                            countries.add(it.Country)
-                            slugs.add(it.ISO2)
-                        }
-                    } else {
-                        UIUtils.showMessage(this@SelectionActivity,
-                            "${getString(R.string.msj_error1)} ${response.code()}, ${getString(R.string.msj_error2)}")                    }
-                }
-                override fun onFailure(call: Call<List<Country>>, t:Throwable?) {
-                    progress_bar.visibility = View.GONE
-                    println("\n Error "+t?.message.toString())
-                    UIUtils.showMessage(this@SelectionActivity, getString(R.string.msj_error))
-                    t?.printStackTrace()
-                }
-            })
     }
 
     /**
@@ -91,14 +77,18 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
      */
     override fun onQueryTextChange(p0: String?): Boolean {
         val suggestedCountries = arrayListOf<String>()
-        countries.forEach{
-            if (it.contains(p0!!,true)){
-                suggestedCountries.add(it)
+        println("countries ${viewModel.countries.value}")
+        viewModel.countries.value?.forEach {
+            if (it.Country.contains(p0!!, true)) {
+                suggestedCountries.add(it.Country)
+                println("suggestedCountries encontrado")
             }
         }
-        val mAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-            suggestedCountries)
-        lvCountries!!.adapter = mAdapter
+        val mAdapter = ArrayAdapter<String>(
+            this, android.R.layout.simple_list_item_1,
+            suggestedCountries
+        )
+        lvCountries.adapter = mAdapter
         actualCountries = suggestedCountries
         return true
     }
@@ -107,19 +97,20 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
      * Cuando se preciona un país.
      */
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val country = actualCountries[p2]
-        val position = countries.indexOf(country)
-        alertDialog(slugs[position])
+        val countryName = actualCountries[p2]
+        val country = viewModel.searchCountry(countryName)
+        //val position = viewModel.countries.value?.indexOf(country)
+        alertDialog(country!!.Slug)
     }
 
-    private fun alertDialog(slug: String){
+    private fun alertDialog(slug: String) {
         val alert = AlertDialog.Builder(this)
         alert.setTitle(R.string.alert_title_country)
             .setMessage(R.string.alert_description_country)
-            .setPositiveButton(R.string.alert_ok){_, _-> //evento click
+            .setPositiveButton(R.string.alert_ok) { _, _ -> //evento click
                 nextActivity(slug)
             }
-            .setNeutralButton(R.string.alert_no){_, _-> } //no hará nada, solo quitar el dialog
+            .setNeutralButton(R.string.alert_no) { _, _ -> } //no hará nada, solo quitar el dialog
             .show()
     }
 
@@ -128,7 +119,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
      *
      * @param slug diminutivo del país.
      */
-    private fun nextActivity(slug:String){
+    private fun nextActivity(slug: String) {
         val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor = preferences.edit()
         editor.putString("slug", slug)
@@ -141,7 +132,7 @@ class SelectionActivity : AppCompatActivity(), View.OnClickListener,
     /**
      * Esconde el teclado.
      */
-    private fun hideKeyboard(){
+    private fun hideKeyboard() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(viewRoot.windowToken, 0)
     }

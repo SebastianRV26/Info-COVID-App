@@ -8,16 +8,6 @@
     android:padding="20dp"
     tools:context=".views.SelectionActivity">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:indeterminate="true"
-        android:indeterminateBehavior="repeat"
-        android:indeterminateTint="@color/colorAccent"
-        android:scaleY="4" />
-
     <SearchView
         android:id="@+id/svCountry"
         android:layout_width="match_parent"

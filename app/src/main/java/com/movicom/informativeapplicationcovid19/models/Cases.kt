@@ -1,7 +1,5 @@
 package com.movicom.informativeapplicationcovid19.models
 
-import java.util.*
-
 /**
  * Casos por país.
  */

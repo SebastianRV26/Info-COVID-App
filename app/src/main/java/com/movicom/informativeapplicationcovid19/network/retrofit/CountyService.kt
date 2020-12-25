@@ -1,4 +1,4 @@
-package com.movicom.informativeapplicationcovid19.network
+package com.movicom.informativeapplicationcovid19.network.retrofit
 
 import com.movicom.informativeapplicationcovid19.models.Cases
 import com.movicom.informativeapplicationcovid19.models.Country
@@ -12,8 +12,8 @@ import retrofit2.http.Path
 interface CountyService {
 
     @GET("countries")
-    fun getCountries() : Call<List<Country>>
+    fun getCountries(): Call<List<Country>>
 
     @GET("dayone/country/{country}")
-    fun getCountry(@Path("country")country:String) : Call<List<Cases>>
+    fun getCountry(@Path("country") country: String): Call<List<Cases>>
 }

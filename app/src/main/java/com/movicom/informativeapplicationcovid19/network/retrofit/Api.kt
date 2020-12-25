@@ -1,6 +1,6 @@
-package com.movicom.informativeapplicationcovid19.network
+package com.movicom.informativeapplicationcovid19.network.retrofit
 
-import com.movicom.informativeapplicationcovid19.environments.apiCovidBaseUrl
+import com.movicom.informativeapplicationcovid19.network.Environments
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,7 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 /**
  * API de Covid-19.
  */
-class Api {
+object Api {
 
     private var retrofit: Retrofit
 
@@ -18,7 +18,7 @@ class Api {
 
     init {
         retrofit = Retrofit.Builder()
-            .baseUrl(apiCovidBaseUrl)
+            .baseUrl(Environments.COVID_BASE_URL)
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -27,17 +27,7 @@ class Api {
         countyService = retrofit.create(CountyService::class.java)
     }
 
-    companion object {
-        private var instance: Api ?= null
-        fun getInstance(): Api {
-            if (instance == null) {
-                instance = Api()
-            }
-            return instance as Api
-        }
-    }
-
-    fun getCountyService():CountyService{
+    fun getCountyService(): CountyService {
         return countyService
     }
 }
